@@ -129,27 +129,66 @@ namespace SqlViewer.Dal
 
         public string ExecuteQuery(string query)
         {
-            using (SqlConnection con = new(cs))
+            using SqlConnection con = new(cs);
+            try
             {
+                con.Open();
+                using SqlCommand cmd = new(query, con);
                 try
                 {
-                    con.Open();
-                    using SqlCommand cmd = new(query, con);
-                    try
-                    {
-                        var rows = cmd.ExecuteNonQuery();
-                        return rows >= 0 ? rows + " rows affected" : "Query executed";
-                    }
-                    catch (Exception ex)
-                    {
-                        return "Error executing query, " + ex.Message;    
-                    }
+                    var rows = cmd.ExecuteNonQuery();
+                    return rows >= 0 ? rows + " rows affected" : "Query executed";
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return "Error connecting to database";
+                    return "Error executing query, " + ex.Message;
                 }
             }
+            catch (Exception)
+            {
+                return "Error connecting to database";
+            }
+        }
+
+        public List<DataTableResults> GetDataTable(string query)
+        {
+            List<DataTableResults> results = new();
+
+            using SqlConnection con = new(cs);
+            try
+            {
+                con.Open();
+                using SqlCommand cmd = new(query, con);
+                try
+                {
+                    using SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        List<DataTableResults> row = new();
+                        for (int i = 0; i < dr.FieldCount; i++)
+                        {
+                            row.Add(new DataTableResults
+                            {
+                                ColumnName = dr.GetName(i),
+                                ColumnValue = dr[i].ToString()
+                            });
+                        }
+
+                        results.AddRange(row);
+                    }
+                    return results;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error executing query!" + ex.Message, "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error executing query!" + ex.Message, "Error");
+            }
+
+            return results;
         }
     }
 }

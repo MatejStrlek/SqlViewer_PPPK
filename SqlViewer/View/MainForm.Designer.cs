@@ -36,6 +36,8 @@
             tvServer = new TreeView();
             tbContent = new TextBox();
             tbResult = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -108,11 +110,31 @@
             tbResult.Size = new Size(372, 225);
             tbResult.TabIndex = 3;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(279, 47);
+            label1.Name = "label1";
+            label1.Size = new Size(42, 15);
+            label1.TabIndex = 4;
+            label1.Text = "Query:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(279, 413);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Result:";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(689, 685);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(tbResult);
             Controls.Add(tbContent);
             Controls.Add(tvServer);
@@ -137,5 +159,7 @@
         private TextBox tbContent;
         private ToolStripButton tsbExec;
         private TextBox tbResult;
+        private Label label1;
+        private Label label2;
     }
 }

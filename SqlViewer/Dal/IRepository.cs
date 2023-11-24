@@ -13,6 +13,6 @@ namespace SqlViewer.Dal
         IEnumerable<Procedure> GetProcedures(Database database);
         void Login(string server, string username, string password);
         string ExecuteQuery(string query);
-        
+        List<DataTableResults> GetDataTable(string query);
     }
 }

@@ -2,10 +2,10 @@
 {
     public class DataTableResults
     {
-        public string columnName { get; set; }
-        public string columnValue { get; set; }
+        public string? ColumnName { get; set; }
+        public string? ColumnValue { get; set; }
 
         public override string ToString()
-        => $"{columnName} {columnValue}";
+        => $"{ColumnName} {ColumnValue}";
     }
 }

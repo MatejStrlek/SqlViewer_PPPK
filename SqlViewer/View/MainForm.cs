@@ -179,7 +179,7 @@ namespace SqlViewer.View
                         .ForEach(t => e.Node.Nodes.Add(new TreeNode(t.ToString())));
 
                     tsbSave.Enabled = true;
-                    tsbSelect.Enabled = true;               
+                    tsbSelect.Enabled = true;
                     break;
             }
             tvServer.EndUpdate();
@@ -209,10 +209,19 @@ namespace SqlViewer.View
                     MessageBoxIcon.Information);
                 return;
             };
-           
-            string result = RepositoryFactory.Repository.ExecuteQuery(query);
 
-            tbResult.Text = result;
+            string resultInfo = RepositoryFactory.Repository.ExecuteQuery(query);
+            List<DataTableResults> results = RepositoryFactory.Repository.GetDataTable(query);
+
+            tbResult.Text = resultInfo;
+            tbResult.Text += Environment.NewLine;
+            tbResult.Text += Environment.NewLine;
+
+            foreach (var item in results)
+            {
+                tbResult.Text += item.ToString();
+                tbResult.Text += Environment.NewLine;
+            }
         }
     }
 }

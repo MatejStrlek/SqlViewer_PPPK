@@ -51,7 +51,7 @@
             // tbServer
             // 
             tbServer.Location = new Point(123, 29);
-            tbServer.Margin = new Padding(1, 1, 1, 1);
+            tbServer.Margin = new Padding(1);
             tbServer.Name = "tbServer";
             tbServer.Size = new Size(204, 23);
             tbServer.TabIndex = 1;
@@ -59,7 +59,7 @@
             // tbUsername
             // 
             tbUsername.Location = new Point(123, 84);
-            tbUsername.Margin = new Padding(1, 1, 1, 1);
+            tbUsername.Margin = new Padding(1);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(204, 23);
             tbUsername.TabIndex = 3;
@@ -77,7 +77,7 @@
             // tbPassword
             // 
             tbPassword.Location = new Point(123, 143);
-            tbPassword.Margin = new Padding(1, 1, 1, 1);
+            tbPassword.Margin = new Padding(1);
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(204, 23);
             tbPassword.TabIndex = 5;
@@ -96,7 +96,7 @@
             // btnLogin
             // 
             btnLogin.Location = new Point(123, 191);
-            btnLogin.Margin = new Padding(1, 1, 1, 1);
+            btnLogin.Margin = new Padding(1);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(202, 27);
             btnLogin.TabIndex = 6;
@@ -128,10 +128,10 @@
             Controls.Add(label2);
             Controls.Add(tbServer);
             Controls.Add(label1);
-            Margin = new Padding(1, 1, 1, 1);
+            Margin = new Padding(1);
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Log in";
+            Text = "SSMS Login";
             ResumeLayout(false);
             PerformLayout();
         }
