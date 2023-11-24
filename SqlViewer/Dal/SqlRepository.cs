@@ -126,5 +126,30 @@ namespace SqlViewer.Dal
 
             return ds;
         }
+
+        public string ExecuteQuery(string query)
+        {
+            using (SqlConnection con = new(cs))
+            {
+                try
+                {
+                    con.Open();
+                    using SqlCommand cmd = new(query, con);
+                    try
+                    {
+                        var rows = cmd.ExecuteNonQuery();
+                        return rows >= 0 ? rows + " rows affected" : "Query executed";
+                    }
+                    catch (Exception ex)
+                    {
+                        return "Error executing query, " + ex.Message;    
+                    }
+                }
+                catch (Exception)
+                {
+                    return "Error connecting to database";
+                }
+            }
+        }
     }
 }

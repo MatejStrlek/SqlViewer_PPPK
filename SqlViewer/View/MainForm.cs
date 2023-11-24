@@ -179,7 +179,7 @@ namespace SqlViewer.View
                         .ForEach(t => e.Node.Nodes.Add(new TreeNode(t.ToString())));
 
                     tsbSave.Enabled = true;
-                    tsbSelect.Enabled = true;
+                    tsbSelect.Enabled = true;               
                     break;
             }
             tvServer.EndUpdate();
@@ -189,6 +189,30 @@ namespace SqlViewer.View
         private void TvServer_AfterCollapse(object sender, TreeViewEventArgs e)
         {
             ClearForm();
+        }
+
+        private void tsbExec_Click(object sender, EventArgs e)
+        {
+            ExecuteQuery();
+        }
+
+        private void ExecuteQuery()
+        {
+            string query = tbContent.Text;
+
+            if (dbEntity == null && string.IsNullOrWhiteSpace(query))
+            {
+                MessageBox.Show(
+                    "Empty query",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            };
+           
+            string result = RepositoryFactory.Repository.ExecuteQuery(query);
+
+            tbResult.Text = result;
         }
     }
 }

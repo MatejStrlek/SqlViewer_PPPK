@@ -32,19 +32,21 @@
             toolStrip1 = new ToolStrip();
             tsbSelect = new ToolStripButton();
             tsbSave = new ToolStripButton();
+            tsbExec = new ToolStripButton();
             tvServer = new TreeView();
             tbContent = new TextBox();
+            tbResult = new TextBox();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(40, 40);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbSelect, tsbSave });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbSelect, tsbSave, tsbExec });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Padding = new Padding(0);
-            toolStrip1.Size = new Size(661, 47);
+            toolStrip1.Size = new Size(689, 47);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -68,12 +70,21 @@
             tsbSave.Text = "Save";
             tsbSave.Click += TsbSave_Click;
             // 
+            // tsbExec
+            // 
+            tsbExec.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbExec.Image = (Image)resources.GetObject("tsbExec.Image");
+            tsbExec.ImageTransparentColor = Color.Magenta;
+            tsbExec.Name = "tsbExec";
+            tsbExec.Size = new Size(44, 44);
+            tsbExec.Click += tsbExec_Click;
+            // 
             // tvServer
             // 
             tvServer.Location = new Point(19, 64);
             tvServer.Margin = new Padding(1);
             tvServer.Name = "tvServer";
-            tvServer.Size = new Size(230, 416);
+            tvServer.Size = new Size(230, 592);
             tvServer.TabIndex = 1;
             tvServer.AfterCollapse += TvServer_AfterCollapse;
             tvServer.BeforeExpand += TvServer_BeforeExpand;
@@ -88,11 +99,21 @@
             tbContent.Size = new Size(372, 331);
             tbContent.TabIndex = 2;
             // 
+            // tbResult
+            // 
+            tbResult.Location = new Point(279, 431);
+            tbResult.Multiline = true;
+            tbResult.Name = "tbResult";
+            tbResult.ScrollBars = ScrollBars.Vertical;
+            tbResult.Size = new Size(372, 225);
+            tbResult.TabIndex = 3;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(661, 533);
+            ClientSize = new Size(689, 685);
+            Controls.Add(tbResult);
             Controls.Add(tbContent);
             Controls.Add(tvServer);
             Controls.Add(toolStrip1);
@@ -114,5 +135,7 @@
         private ToolStripButton tsbSave;
         private TreeView tvServer;
         private TextBox tbContent;
+        private ToolStripButton tsbExec;
+        private TextBox tbResult;
     }
 }
